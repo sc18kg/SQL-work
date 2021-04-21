@@ -1,0 +1,107 @@
+SHOW DATABASES;
+USE sakila;
+SHOW tables;
+
+DESCRIBE actor;
+DESCRIBE film;
+
+SELECT * FROM actor_info;
+SELECT * FROM film_list;
+SELECT * FROM film;
+
+
+SELECT first_name, last_name
+FROM actor
+WHERE first_name = 'JOHN';
+
+SELECT first_name, last_name
+FROM actor
+WHERE last_name = 'NEESON';
+
+SELECT actor_id, first_name, last_name
+FROM actor
+WHERE (actor_id % 10) = 0 ;
+
+SELECT description
+FROM film_list
+WHERE FID = 100;
+
+SELECT title
+FROM film_list
+WHERE rating = 'R';
+
+SELECT title
+FROM film_list
+WHERE rating != 'R';
+
+SELECT title, description, length
+FROM film_list
+WHERE length IS NOT NULL
+ORDER BY length ASC
+LIMIT 10;
+
+SELECT * FROM film_list
+WHERE length =(
+SELECT max(length)
+FROM film_list);
+
+SELECT * FROM film
+WHERE special_features = 'Deleted Scenes';
+
+SELECT first_name, last_name
+FROM actor
+GROUP BY first_name, last_name
+HAVING COUNT(last_name) = 1
+ORDER BY last_name DESC;
+
+SELECT COUNT(last_name), last_name
+FROM actor
+GROUP BY last_name
+HAVING COUNT(last_name) > 1
+ORDER BY COUNT(last_name) DESC;
+
+SELECT actors, COUNT(actors) AS MOST_FREQUENT
+from film_list
+GROUP BY actors
+ORDER BY COUNT(actors) DESC;
+
+SELECT category, AVG(length)
+FROM film_list
+GROUP BY category;
+
+SELECT title, description
+FROM film_list
+WHERE description LIKE '%Robot%';
+
+SELECT COUNT(title)
+FROM film
+WHERE release_year = '2010';
+
+SELECT title
+FROM film_list
+WHERE category = 'Horror';
+
+SHOW tables;
+
+SELECT * FROM language;
+
+SELECT first_name, last_name
+FROM staff
+WHERE staff_id = 2;
+
+SELECT COUNT(title)
+FROM film_list
+WHERE actors LIKE '%Fred Costner%';
+
+SELECT DISTINCT COUNT(country)
+FROM country;
+
+SELECT name
+FROM language
+GROUP BY name
+ORDER BY ASC;
+
+SELECT first_name, last_name
+FROM actor_info
+HAVING last_name LIKE '%son'
+ORDER BY first_name ASC;
